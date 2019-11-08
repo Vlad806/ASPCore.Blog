@@ -1,4 +1,5 @@
 ﻿using ASPCore.Blog.Domain.Data;
+using ASPCore.Blog.Domain.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -47,6 +48,8 @@ namespace ASPCore.Blog.WebUI
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddTransient(typeof(IApplicationRepository<>), typeof(ApplicationRepository<>));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
