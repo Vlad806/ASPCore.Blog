@@ -2630,10 +2630,6 @@ body.mobile-nav-active #mobile-nav-toggle {
 .blog-pagination .page-link .lnr {
   font-weight: 600; }
 
-.blog-pagination .page-item:last-child .page-link,
-.blog-pagination .page-item:first-child .page-link {
-  border-radius: 0; }
-
 .blog-pagination .page-link:hover {
   color: #fff;
   text-decoration: none;
