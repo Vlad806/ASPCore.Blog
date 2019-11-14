@@ -44,6 +44,8 @@ namespace ASPCore.Blog.Domain.Data.Migrations
 
                     b.Property<int>("CategoryId");
 
+                    b.Property<string>("DataTime");
+
                     b.Property<string>("Description")
                         .IsRequired();
 

@@ -8,6 +8,7 @@ namespace ASPCore.Blog.Domain.Entities
         public string Name { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
+        public string DataTime { get; set; }
         public byte[] HeroImage { get; set; }
         public int CategoryId { get; set; }
         public virtual Categories Category { get; set; }

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ASPCore.Blog.Domain.Entities.Tags>
+@{
+    Layout = null;
+}
+
+<div class="single-widget tags-widget">
+    <h4 class="title">Post Tags</h4>
+    <ul>
+        @foreach (var tag in Model)
+        {
+            <li><a href="#">@tag.Name</a></li>
+        }
+    </ul>
+</div>
+
