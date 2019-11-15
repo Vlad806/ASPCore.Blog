@@ -6,11 +6,16 @@
 <div class="single-widget category-widget">
     <h4 class="title">Post Categories</h4>
     <ul>
+        <li>
+            <a asp-controller="Article" asp-action="ArticlesList" class="justify-content-between align-items-center d-flex">
+                <p>All</p>
+            </a>
+        </li>
         @foreach (var category in Model)
         {
             <li>
-                <a id="@category.CategoryId" href="" class="justify-content-between align-items-center d-flex">
-                    <p><img src="img/bullet.png" alt="">@category.Name</p>
+                <a href="javascript:void(0)" id="@category.CategoryId" onclick="filteredByCategory(this);return false;" class="justify-content-between align-items-center d-flex">
+                    <p>@category.Name</p>
                 </a>
             </li>
         }

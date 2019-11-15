@@ -1,5 +1,6 @@
 ﻿using ASPCore.Blog.Domain.Data;
 using ASPCore.Blog.Domain.Repositories;
+using ASPCore.Blog.WebUI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -50,6 +51,7 @@ namespace ASPCore.Blog.WebUI
                 .AddDefaultTokenProviders();
 
             services.AddTransient(typeof(IApplicationRepository<>), typeof(ApplicationRepository<>));
+            services.AddScoped<IArticleService, ArticleService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

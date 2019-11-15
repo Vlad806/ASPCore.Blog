@@ -2,3 +2,8 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+function filteredByCategory(elem) {
+    var id = elem.id;
+    window.location = window.location.origin + window.location.pathname + "?id=" + id;
+};

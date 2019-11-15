@@ -1,27 +1,15 @@
-﻿using ASPCore.Blog.Domain.Entities;
-using ASPCore.Blog.Domain.Repositories;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using ASPCore.Blog.WebUI.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using ASPCore.Blog.WebUI.Services;
 
 namespace ASPCore.Blog.WebUI.Controllers
 {
     public class ArticleController : Controller
     {
-        private readonly IApplicationRepository<Articles> _articlesRepository;
-        private readonly IApplicationRepository<Categories> _categoriesRepository;
-        private readonly IApplicationRepository<Tags> _tagsRepository;
-        public int pageSize = 4;
+        private readonly IArticleService _articleService;
 
-        public ArticleController(
-            IApplicationRepository<Articles> articlesRepository,
-                IApplicationRepository<Categories> categoriesRepository,
-                    IApplicationRepository<Tags> tagsRepository
-            )
+        public ArticleController(IArticleService articleService)
         {
-            _articlesRepository = articlesRepository;
-            _categoriesRepository = categoriesRepository;
-            _tagsRepository = tagsRepository;
+            _articleService = articleService;
         }
 
         public IActionResult Index()
@@ -29,30 +17,10 @@ namespace ASPCore.Blog.WebUI.Controllers
             return View();
         }
 
-        public IActionResult ArticlesList(int id, int page = 1)
+        [HttpGet]
+        public IActionResult ArticlesList(int? id, int page = 1)
         {
-            var listArticles = _articlesRepository.Get();
-            var listCategories = _categoriesRepository.Get();
-            var listTags = _tagsRepository.Get();
-            var articlesModel = new ArticlesModel
-            {
-               
-                Articles = listArticles
-                    .Where(i => i.CategoryId == id)
-                    .OrderBy(article => article.ArticleId)
-                    .Skip((page - 1) * pageSize)
-                    .Take(pageSize),
-                PagingInfo = new PagingInfo
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = pageSize,
-                    TotalItems = listArticles.Count()
-                },
-                Categories = listCategories,
-                Tags = listTags
-            };
-
-            return View(articlesModel);
+            return View(_articleService.GetArticlesModel(id, page));
         }
     }
 }
