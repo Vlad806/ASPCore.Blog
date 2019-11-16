@@ -1,5 +1,5 @@
 ﻿@using ASPCore.Blog.WebUI.HttpHandler
-@model ASPCore.Blog.WebUI.Models.ArticlesModel
+@model ASPCore.Blog.WebUI.Models.ArticlesViewModel
 @{
     ViewData["Title"] = "ArticlesList";
 }
@@ -19,11 +19,11 @@
                                     <div class="post-thumb">
                                         <img class="img-fluid" src="~/img/c4.jpg" alt="">
                                     </div>
-                                    <div class="post-details">
-                                            <h4><a href="#">@article.Name</a></h4>
-                                            <p>@article.ShortDescription</p>
+                                    <div class="post-details">                                       
+                                        <h4><a href="javascript:void(0)" id="@article.ArticleId" onclick="getArticle(this);return false;">@article.Name</a></h4>
+                                        <p>@article.ShortDescription</p>
                                         <div class="blog-meta">
-                                            <a href="#" class="m-gap"><span class="lnr lnr-calendar-full"></span>@article.DataTime</a>
+                                            <a href="#" class="m-gap"><span class="lnr lnr-calendar-full"></span>@article.DateChange.ToString("dd.MM.yyyy")</a>
                                         </div>
                                     </div>
                                 </div>
@@ -57,8 +57,8 @@
                     </ul>
                     <img src="img/sign.png" alt="">
                 </div>
-                @await Component.InvokeAsync("Categories", Model.Categories)
-                @await Component.InvokeAsync("Tags", Model.Tags)
+                @await Component.InvokeAsync("Categories")
+                @await Component.InvokeAsync("Tags")
             </div>
         </div>
     </div>

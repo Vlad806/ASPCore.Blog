@@ -20,7 +20,13 @@ namespace ASPCore.Blog.WebUI.Controllers
         [HttpGet]
         public IActionResult ArticlesList(int? id, int page = 1)
         {
-            return View(_articleService.GetArticlesModel(id, page));
+            return View(_articleService.GetArticlesViewModel(id, page));
+        }
+
+        [HttpGet]
+        public IActionResult ArticleDetails(int id)
+        {
+            return View(_articleService.GetArticle(id));
         }
     }
 }

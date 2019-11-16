@@ -52,6 +52,8 @@ namespace ASPCore.Blog.WebUI
 
             services.AddTransient(typeof(IApplicationRepository<>), typeof(ApplicationRepository<>));
             services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ITagsService, TagsService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

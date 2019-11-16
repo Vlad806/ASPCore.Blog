@@ -7,3 +7,8 @@ function filteredByCategory(elem) {
     var id = elem.id;
     window.location = window.location.origin + window.location.pathname + "?id=" + id;
 };
+
+function getArticle(art) {
+    var id = art.id;
+    window.location = window.location.origin + "\\Article\\ArticleDetails" + "?id=" + id;
+};

@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using ASPCore.Blog.Domain.Entities;
+﻿using System;
 
 namespace ASPCore.Blog.WebUI.Models
 {
     public class ArticlesModel
     {
-        public IEnumerable<Articles> Articles { get; set; }
-        public IEnumerable<Categories> Categories { get; set; }
-        public IEnumerable<Tags> Tags { get; set; }
-        public PagingInfo PagingInfo { get; set; }
-
+        public int ArticleId { get; set; }
+        public string Name { get; set; }
+        public string ShortDescription { get; set; }
+        public string Description { get; set; }
+        public DateTime DateChange { get; set; }
+        public byte[] HeroImage { get; set; }
+        public CategoriesModel Category { get; set; }
     }
 }

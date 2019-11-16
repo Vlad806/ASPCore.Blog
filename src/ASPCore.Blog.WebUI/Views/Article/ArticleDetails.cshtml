@@ -1,0 +1,55 @@
+﻿@model ASPCore.Blog.WebUI.Models.ArticlesModel
+@{
+    ViewData["Title"] = "Article";
+}
+
+<section class="blog_area section-gap single-post-area">
+    <div class="container box_1170">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="main_blog_details">
+                    <img class="img-fluid" src="img/blog/news-blog.jpg" alt="">
+                    <h4>@Model.Name</h4>
+                    <div class="user_details">
+                        <div class="float-left">
+                            <a href="#">@Model.Category.Name</a>
+                        </div>
+                        <div class="float-right">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h5>Mark wiens</h5>
+                                    <p>@Model.DateChange.ToString("dd.MM.yyyy")</p>
+                                </div>
+                                <div class="d-flex">
+                                    <img src="img/blog/user-img.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>@Model.Description</p>
+                    <div class="news_d_footer">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 sidebar">
+                <div class="single-widget protfolio-widget">
+                    <img class="img-fluid" src="img/blog/user2.png" alt="">
+                    <a href="#">
+                        <h4>Peter Anderson</h4>
+                    </a>
+                    <p class="p-text">
+                        Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend
+                        money on boot camp whenyou can get. Boot camps have itssuppor ters andits detractors.
+                    </p>
+                    <ul class="social-links">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    </ul>
+                    <img src="img/sign.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

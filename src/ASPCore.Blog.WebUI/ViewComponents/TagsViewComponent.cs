@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using ASPCore.Blog.Domain.Entities;
+﻿using System.Threading.Tasks;
+using ASPCore.Blog.WebUI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 
@@ -8,9 +7,16 @@ namespace ASPCore.Blog.WebUI.ViewComponents
 {
     public class TagsViewComponent : ViewComponent
     {
-        public Task<ViewViewComponentResult> InvokeAsync(IEnumerable<Tags> listModels)
+        private readonly ITagsService _tagsService;
+
+        public TagsViewComponent(ITagsService tagsService)
         {
-            return Task.FromResult(View(listModels));
+            _tagsService = tagsService;
+        }
+
+        public Task<ViewViewComponentResult> InvokeAsync()
+        {
+            return Task.FromResult(View(_tagsService.GetTagsModelCollection()));
         }
     }
 }
