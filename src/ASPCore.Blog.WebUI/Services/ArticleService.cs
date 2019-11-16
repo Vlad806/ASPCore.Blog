@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ASPCore.Blog.Domain.Entities;
 using ASPCore.Blog.Domain.Repositories;
@@ -10,21 +11,27 @@ namespace ASPCore.Blog.WebUI.Services
     {
         private readonly IApplicationRepository<Articles> _articlesRepository;
         private readonly IApplicationRepository<Categories> _categoriesRepository;
+        private readonly IApplicationRepository<ArticleTags> _articleTagsRepository;
+
         public int pageSize = 4;
 
         public ArticleService(
             IApplicationRepository<Articles> articlesRepository,
-            IApplicationRepository<Categories> categoriesRepository
-        )
+            IApplicationRepository<Categories> categoriesRepository, IApplicationRepository<ArticleTags> articleTagsRepository)
         {
             _articlesRepository = articlesRepository;
             _categoriesRepository = categoriesRepository;
+            _articleTagsRepository = articleTagsRepository;
         }
 
-        public ArticlesViewModel GetArticlesViewModel(int? id, int page)
+        public ArticlesViewModel GetArticlesViewModel(int? categoryId, int? tagId, DateTime? start, DateTime? end, int page)
         {
             var listArticles = GetArticlesModelCollection();
-            var filterArticle = id == null ? listArticles : listArticles.Where(i => i.Category.CategoryId == id);
+            var filterArticle = categoryId == null ? listArticles : listArticles.Where(i => i.Category.CategoryId == categoryId);
+            filterArticle = tagId == null ? filterArticle : GetArticlesModelCollectionByTag(tagId.Value, filterArticle);
+            filterArticle = start != null && end != null
+                ? GetArticlesModelCollectionByDate(start.Value, end.Value, filterArticle)
+                : filterArticle;
 
             var articlesModel = new ArticlesViewModel
             {
@@ -74,11 +81,29 @@ namespace ASPCore.Blog.WebUI.Services
                     HeroImage = item.HeroImage,
                     Name = item.Name,
                     ShortDescription = item.ShortDescription,
-                    Category = new CategoriesModel { CategoryId = item.CategoryId}
+                    Category = new CategoriesModel { CategoryId = item.CategoryId }
                 });
             }
 
             return result;
+        }
+
+        private IEnumerable<ArticlesModel> GetArticlesModelCollectionByTag(int tagId, IEnumerable<ArticlesModel> articlesModels)
+        {
+            var listArticleTags = _articleTagsRepository.Get().Where(x => x.TagId == tagId);
+            List<ArticlesModel> result = new List<ArticlesModel>();
+            foreach (var item in listArticleTags)
+            {
+                var article = articlesModels.FirstOrDefault(x => x.ArticleId == item.ArticleId);
+                result.Add(article);
+            }
+
+            return result;
+        }
+
+        private IEnumerable<ArticlesModel> GetArticlesModelCollectionByDate(DateTime start, DateTime end, IEnumerable<ArticlesModel> articlesModels)
+        {
+            return articlesModels.Where(x => x.DateChange >= start && x.DateChange <= end);
         }
     }
 }

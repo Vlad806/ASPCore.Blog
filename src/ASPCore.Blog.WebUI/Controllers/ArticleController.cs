@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using ASPCore.Blog.WebUI.Services;
 
 namespace ASPCore.Blog.WebUI.Controllers
@@ -18,9 +19,9 @@ namespace ASPCore.Blog.WebUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult ArticlesList(int? id, int page = 1)
+        public IActionResult ArticlesList(int? categoryId, int? tagId, DateTime? start, DateTime? end, int page = 1)
         {
-            return View(_articleService.GetArticlesViewModel(id, page));
+            return View(_articleService.GetArticlesViewModel(categoryId, tagId, start, end, page));
         }
 
         [HttpGet]

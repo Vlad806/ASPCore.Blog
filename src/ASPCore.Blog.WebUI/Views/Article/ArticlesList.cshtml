@@ -19,7 +19,7 @@
                                     <div class="post-thumb">
                                         <img class="img-fluid" src="~/img/c4.jpg" alt="">
                                     </div>
-                                    <div class="post-details">                                       
+                                    <div class="post-details">
                                         <h4><a href="javascript:void(0)" id="@article.ArticleId" onclick="getArticle(this);return false;">@article.Name</a></h4>
                                         <p>@article.ShortDescription</p>
                                         <div class="blog-meta">
@@ -59,8 +59,70 @@
                 </div>
                 @await Component.InvokeAsync("Categories")
                 @await Component.InvokeAsync("Tags")
+                <div class="single-widget category-widget">
+                    <h4 class="title">Post date filter</h4>
+                    <div class="single-footer-widget">
+                        <div class="input-group d-flex flex-row">
+                            <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                                <i class="fa fa-calendar"></i>&nbsp;
+                                <span></span> <i class="fa fa-caret-down"></i>
+                            </div>
+                            <div style="text-align:end"><button onclick="filteredByDate()" class="btn sub-btn"><span>Filter</span></button></div>
+                        </div>
+                        <div class="mt-10 info"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
+@section Scripts
+{
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/js/daterangepicker.js"></script>
+    <script>
+        $(function() {
+
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            function cb(start, end) {
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            }
+
+            $('#reportrange').daterangepicker({
+                    startDate: start,
+                    endDate: end,
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [
+                            moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')
+                        ]
+                    }
+                },
+                cb);
+
+            cb(start, end);
+
+        });
+
+        function filteredByDate() {
+            var textDate = $('#reportrange span').html();
+            var dates = textDate.split("-");
+            $.each(dates, function(key, value) {
+                dates[key] = value.trim();
+                dates[key] = moment(dates[key]).format('YYYY-MM-DD');
+                dates[key] = new Date(dates[key]).toISOString();
+            });
+            window.location = window.location.origin + "\\Article\\ArticlesList" + "?start=" + dates[0] + "&end=" + dates[1];
+        };
+
+    </script>
+}
 

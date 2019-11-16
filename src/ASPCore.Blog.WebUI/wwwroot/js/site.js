@@ -5,7 +5,12 @@
 
 function filteredByCategory(elem) {
     var id = elem.id;
-    window.location = window.location.origin + window.location.pathname + "?id=" + id;
+    window.location = window.location.origin + "\\Article\\ArticlesList" + "?categoryId=" + id;
+};
+
+function filteredByTag(elem) {
+    var id = elem.id;
+    window.location = window.location.origin + "\\Article\\ArticlesList" + "?tagId=" + id;
 };
 
 function getArticle(art) {
