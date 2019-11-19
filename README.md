@@ -1,6 +1,6 @@
 # ASPCore.Blog
 ASP .NET Core project.
 
-#Authorization
+# Authorization
 email: admin@admin.com
 password: P@ssword123
