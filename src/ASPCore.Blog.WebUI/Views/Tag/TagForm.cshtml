@@ -1,0 +1,36 @@
+﻿@model ASPCore.Blog.WebUI.Models.TagsModel
+@{
+    ViewData["Title"] = "Tag Form";
+}
+
+<div class="whole-wrap">
+    <div class="container box_1170">
+        <div class="section-top-border">
+            <div class="section-top-border">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                        <h3 class="mb-30">Form Tag</h3>
+                        <form asp-controller="Tag" asp-action="@ViewBag.Action" method="post">
+                            <div asp-validation-summary="All"></div>
+                            @if (ViewBag.Action == "Update")
+                            {
+                                <input asp-for="TagId" type="hidden" value="@Model.TagId">
+                            }
+                            <div class="mt-10">
+                                <input asp-for="Name" class="single-input" placeholder="Enter category">
+                            </div>
+                            <div class="mt-10">
+                                <button type="submit" class="genric-btn success circle">@ViewBag.Action</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

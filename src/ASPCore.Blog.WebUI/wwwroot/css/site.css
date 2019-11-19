@@ -11,3 +11,23 @@
     margin-top: 195px;
 }
 
+#table-article *,
+#table-article *:before,
+#table-article *:after {
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+}
+
+.multiselect-container {
+    width: 100% !important;
+}
+
+button.multiselect {
+    width: 100%;
+}
+
+.validation-summary-errors {
+    color: red;
+}
+

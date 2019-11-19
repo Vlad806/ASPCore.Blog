@@ -1,0 +1,63 @@
+﻿@model ASPCore.Blog.WebUI.Models.ArticlesModel
+@{
+    ViewData["Title"] = "ArticleForm";
+}
+
+<div class="whole-wrap">
+    <div class="container box_1170">
+        <div class="section-top-border">
+            <div class="section-top-border">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                        <h3 class="mb-30">Form Article</h3>
+                        <form asp-controller="Article" asp-action="@ViewBag.Action" method="post">
+                            <div asp-validation-summary="All"></div>
+                            @if (ViewBag.Action == "Update")
+                            {
+                                <input asp-for="ArticleId" type="hidden" value="@Model.ArticleId">
+                            }
+                            <div class="mt-10">
+                                <input asp-for="Name" class="single-input" placeholder="Enter title">
+                            </div>
+                            <div class="mt-10">
+                                <input asp-for="ShortDescription" class="single-input" placeholder="Enter short description">
+                            </div>
+                            <div class="input-group-icon mt-10">
+                                <div class="icon"><i class="fa fa-list-alt" aria-hidden="true"></i></div>
+                                <div id="default-select" class="form-select">
+                                    <select asp-for="Category.CategoryId" asp-items="ViewBag.Categories"></select>
+                                </div>
+                            </div>
+                            <div class="input-group-icon mt-10">
+                                <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+                                <div class="form-select" id="default-select">
+                                    <select id="multiselect" multiple="multiple" asp-for="SelectedTags" asp-items="ViewBag.Tags"></select>
+                                </div>
+                            </div>
+                            <div class="mt-10">
+                                <textarea asp-for="Description" class="single-textarea" placeholder="Enter article"></textarea>
+                            </div>
+                            <div class="mt-10">
+                                <button type="submit" class="genric-btn success circle">@ViewBag.Action</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/template/jquery.nice-select.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#multiselect').multiselect({
+                buttonWidth: '400px'
+            });
+        });
+    </script>
+}

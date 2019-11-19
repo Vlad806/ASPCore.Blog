@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ASPCore.Blog.WebUI.Models.CategoriesModel>
+@{
+    ViewData["Title"] = "Category Table";
+    int number = 0;
+    int defaultCategory = 7;
+}
+
+<section class="blog_area section-gap single-post-area">
+    <div class="container box_1170">
+        <div class="row">
+            <div>
+                <div class="section-top-border">
+                    <div class="row">
+                        <h3 class="mb-30 col-xl-10">All Categories</h3>
+                        <div class="text-right col-xl-2">
+                            <button type="button" class="genric-btn primary circle" onclick="addCategory()">Add</button>
+                        </div>
+                    </div>
+                    <div id="table-article" class="progress-table-wrap">
+                        <div class="progress-table">
+                            <div class="table-head">
+                                <div class="serial">№</div>
+                                <div class="serial">Category Name</div>
+                                <div class="serial">Action</div>
+                            </div>
+                            @foreach (var table in Model)
+                            {
+                                <div class="table-row" id="@table.CategoryId">
+                                    <div class="serial">@{ number++; } @number</div>
+                                    <div class="serial">@table.Name</div>
+                                    <div class="serial">
+                                        <button type="button" class="genric-btn primary circle" onclick="updateCategory(this)">Update</button>
+                                        @if (table.CategoryId != defaultCategory)
+                                        {
+                                            <button type="button" class="genric-btn danger circle" onclick="deleteCategory(this)">Delete</button>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

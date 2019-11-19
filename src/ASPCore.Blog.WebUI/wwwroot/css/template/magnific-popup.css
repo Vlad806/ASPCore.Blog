@@ -27,8 +27,7 @@
   height: 100%;
   left: 0;
   top: 0;
-  padding: 0 8px;
-  box-sizing: border-box; }
+  padding: 0 8px; }
 
 .mfp-container:before {
   content: '';
@@ -248,7 +247,6 @@ img.mfp-img {
   height: auto;
   display: block;
   line-height: 0;
-  box-sizing: border-box;
   padding: 40px 0 40px;
   margin: 0 auto; }
 
@@ -318,8 +316,7 @@ img.mfp-img {
     margin: 0;
     top: auto;
     padding: 3px 5px;
-    position: fixed;
-    box-sizing: border-box; }
+    position: fixed; }
     .mfp-img-mobile .mfp-bottom-bar:empty {
       padding: 0; }
   .mfp-img-mobile .mfp-counter {

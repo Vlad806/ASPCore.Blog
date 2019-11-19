@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPCore.Blog.WebUI", "ASPCore.Blog.WebUI\ASPCore.Blog.WebUI.csproj", "{A2164253-2801-4449-8DA8-5B641D76462C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPCore.Blog.WebUI", "ASPCore.Blog.WebUI\ASPCore.Blog.WebUI.csproj", "{A2164253-2801-4449-8DA8-5B641D76462C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPCore.Blog.Domain", "ASPCore.Blog.Domain\ASPCore.Blog.Domain.csproj", "{85E87E68-B780-4658-8FA0-3BAC86CDF90E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPCore.Blog.Domain", "ASPCore.Blog.Domain\ASPCore.Blog.Domain.csproj", "{85E87E68-B780-4658-8FA0-3BAC86CDF90E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

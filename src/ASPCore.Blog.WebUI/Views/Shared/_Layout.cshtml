@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,31 +10,43 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500|Rubik:500" rel="stylesheet">
 
+    <link rel="stylesheet" href="~/css/bootstrap-multiselect.css" type="text/css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/template/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/template/main.css">
     <link rel="stylesheet" href="~/css/template/linearicons.css">
     <link rel="stylesheet" href="~/css/daterangepicker.css">
+    <link rel="stylesheet" href="~/css/template/nice-select.css">
 </head>
 <body>
     <!-- Start header Area -->
     <header id="header">
         <div class="container box_1170 main-menu">
-            <div class="row align-items-center justify-content-center d-flex">
-                <nav id="nav-menu-container">
+            <div class="row align-items-center  d-flex">
+                <nav id="nav-menu-container" class="col-xl-11">
                     <ul class="nav-menu">
                         <li class="menu-active">
                             <a asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li>
-                            <a href="">Category</a>
-                        </li>
-                        <li>
                             <a asp-controller="Article" asp-action="ArticlesList">Articles</a>
                         </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li>
+                                <a asp-controller="Article" asp-action="ArticlesTable">Articles Table</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Category" asp-action="Index">Categories Table</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Tag" asp-action="Index">Tags Table</a>
+                            </li>
+                        }
                     </ul>
                 </nav>
+                <partial name="_LoginPartial" />
             </div>
         </div>
     </header>

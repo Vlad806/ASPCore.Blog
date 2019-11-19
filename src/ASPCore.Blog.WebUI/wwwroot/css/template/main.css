@@ -923,7 +923,7 @@ h6 {
     width: 11.83%;
     padding-left: 30px; }
   .progress-table .country {
-    width: 28.07%; }
+    width: 20%; }
   .progress-table .visit {
     width: 19.74%; }
   .progress-table .percentage {
@@ -1064,7 +1064,7 @@ h6 {
   outline: none;
   background: #f9f9ff;
   padding: 0 20px;
-  height: 100px;
+  height: 800px;
   resize: none; }
   .single-textarea:focus {
     outline: none; }

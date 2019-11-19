@@ -25,7 +25,7 @@ $(document).ready(function() {
 	});
 
 	if (document.getElementById('default-select')) {
-		$('select').niceSelect();
+        $('select:not(#multiselect)').niceSelect();
 	}
 
 	// Initiate superfish on nav menu
